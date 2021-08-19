@@ -13,6 +13,24 @@ var writePassword = function() {
 
 };
 
+var getRandomLower = function() {
+  return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+}
+
+var getRandomUpper = function() {
+  return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+}
+
+var getRandomNumber = function() {
+  // return String.fromCharCode(Math.floor(Math.random() * 10));
+  return Math.floor(Math.random() * 10);
+}
+
+var getRandomSymbol = function() {
+  const symbols = '~!@#$%^&*()_+{}":?><;.,';
+  return symbols[Math.floor(Math.random() * symbols.length)];
+}
+
 // function to generate a new password
 var generatePassword = function() {
   
@@ -21,12 +39,14 @@ var generatePassword = function() {
   var upperCaseString;
   var numberString;
   var specialCharString;
+  var charArray = ["", "", "", ""];
+  var password;
   var passwordLength = 0;  
   var lowerCaseConfirm = confirm("Would you like to include lower case letters in the password?");
   var upperCaseConfirm = confirm("Would you like to include upper case letters in the password?");
   var numberConfirm = confirm("Would you like to include numbers in the password?");
   var specialCharConfirm = confirm("Would you like to include special characters in the password?");
-
+  
   // checks if passwordLength is between 8 and 128
   while (passwordLength < 8 || passwordLength > 128) {
     passwordLength = prompt("How long would like the password to be? Between 8 and 128 characters.");
@@ -35,12 +55,33 @@ var generatePassword = function() {
     }
     passwordLength = Number(passwordLength);
   }
-  
-  console.log(passwordLength);
-  console.log(lowerCaseConfirm);
-  console.log(upperCaseConfirm);
-  console.log(numberConfirm);
-  console.log(specialCharConfirm);
+
+  for (var i = 0; i < passwordLength; i++) {
+    if (lowerCaseConfirm) {
+      lowerCaseString = getRandomLower();
+      charArray.push(lowerCaseString);
+    }
+    if (upperCaseConfirm) {
+      upperCaseString = getRandomUpper();
+      charArray.push(upperCaseString);
+    }
+    if (numberConfirm) {
+      numberString = getRandomNumber();
+      charArray.push(numberString);
+    }
+    if (specialCharConfirm) {
+      specialCharString = getRandomSymbol();
+      charArray.push(specialCharString);
+    }
+  }
+
+  // charArray = [lowerCaseString, upperCaseString,  numberString, specialCharString]
+  for (var i = 0; i < passwordLength; i++) {
+    if (charArray[i] === "") {
+      charArray.splice(i, 1);
+    }
+    console.log(charArray[Math.floor(Math.random() * charArray.length)]);
+  }
 };
 
 generatePassword();
