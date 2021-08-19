@@ -79,19 +79,11 @@ var generatePassword = function() {
       charArray.push(specialCharString);
     }
     charArray.splice(0, 1);
-    // console.log(charArray);
     passwordArray.push(charArray[Math.floor(Math.random() * charArray.length)]);
+    password = password + passwordArray[i + 1];
   }
 
   passwordArray.splice(0, 1);
-
-  for (var i = 0; i < passwordArray; i++) {
-    password = password.concat(password, passwordArray[i]);
-  }
-
-  console.log("Password Array");
-  console.log(passwordArray);
-  console.log(password);
 };
 
 generatePassword();
