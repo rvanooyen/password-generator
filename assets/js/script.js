@@ -84,9 +84,10 @@ var generatePassword = function() {
   }
 
   passwordArray.splice(0, 1);
+  return password;
 };
 
-generatePassword();
+// generatePassword();
 
 // Add event listener to generate button
-// generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", writePassword);
