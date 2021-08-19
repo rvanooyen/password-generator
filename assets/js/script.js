@@ -1,13 +1,13 @@
 // Assignment code here
-
+var charArray;
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 var writePassword = function() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+var password = generatePassword();
+var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
 
@@ -31,6 +31,10 @@ var getRandomSymbol = function() {
   return symbols[Math.floor(Math.random() * symbols.length)];
 }
 
+var resetCharArray = function() {
+  charArray = [""];
+}
+
 // function to generate a new password
 var generatePassword = function() {
   
@@ -39,8 +43,8 @@ var generatePassword = function() {
   var upperCaseString;
   var numberString;
   var specialCharString;
-  var charArray = ["", "", "", ""];
-  var password;
+  var passwordArray = [""];
+  var password = "";
   var passwordLength = 0;  
   var lowerCaseConfirm = confirm("Would you like to include lower case letters in the password?");
   var upperCaseConfirm = confirm("Would you like to include upper case letters in the password?");
@@ -57,6 +61,7 @@ var generatePassword = function() {
   }
 
   for (var i = 0; i < passwordLength; i++) {
+    resetCharArray();
     if (lowerCaseConfirm) {
       lowerCaseString = getRandomLower();
       charArray.push(lowerCaseString);
@@ -73,15 +78,20 @@ var generatePassword = function() {
       specialCharString = getRandomSymbol();
       charArray.push(specialCharString);
     }
+    charArray.splice(0, 1);
+    // console.log(charArray);
+    passwordArray.push(charArray[Math.floor(Math.random() * charArray.length)]);
   }
 
-  // charArray = [lowerCaseString, upperCaseString,  numberString, specialCharString]
-  for (var i = 0; i < passwordLength; i++) {
-    if (charArray[i] === "") {
-      charArray.splice(i, 1);
-    }
-    console.log(charArray[Math.floor(Math.random() * charArray.length)]);
+  passwordArray.splice(0, 1);
+
+  for (var i = 0; i < passwordArray; i++) {
+    password = password.concat(password, passwordArray[i]);
   }
+
+  console.log("Password Array");
+  console.log(passwordArray);
+  console.log(password);
 };
 
 generatePassword();
