@@ -42,6 +42,30 @@ var resetCharArray = function() {
   return charArray;
 };
 
+// function to confirm lower case character was selected
+var confirmLowerCase = function() {
+  var lowerCaseConfirm = confirm("Would you like to include lower case letters in the password?");
+  return lowerCaseConfirm;
+};
+
+// function to confirm upper case character was selected
+var confirmUpperCase = function() {
+  var upperCaseConfirm = confirm("Would you like to include upper case letters in the password?");
+  return upperCaseConfirm;
+};
+
+// function to confirm number character was selected
+var confirmNumber = function() {
+  var numberConfirm = confirm("Would you like to include numbers in the password?");
+  return numberConfirm;
+};
+
+// function to confirm special character was selected
+var confirmSpecialCharacter = function() {
+  var specialCharConfirm = confirm("Would you like to include special characters in the password?");
+  return specialCharConfirm;
+};
+
 // function to generate a new password
 var generatePassword = function() {
   
@@ -53,26 +77,27 @@ var generatePassword = function() {
   var charArray = [""];
   var passwordArray = [""];
   var password = "";
-  var passwordLength = 0;  
-  var lowerCaseConfirm = confirm("Would you like to include lower case letters in the password?");
-  var upperCaseConfirm = confirm("Would you like to include upper case letters in the password?");
-  var numberConfirm = confirm("Would you like to include numbers in the password?");
-  var specialCharConfirm = confirm("Would you like to include special characters in the password?");
-  let confirmArray = [lowerCaseConfirm, upperCaseConfirm, numberConfirm, specialCharConfirm];
-  console.log("Confirms: ");
-  console.log(confirmArray);
+    
+  var lowerCaseConfirm = confirmLowerCase();
+  var upperCaseConfirm = confirmUpperCase();
+  var numberConfirm = confirmNumber();
+  var specialCharConfirm = confirmSpecialCharacter();
+
+  // checks if user has selected atleast one password character type
+  while (!lowerCaseConfirm && !upperCaseConfirm && !numberConfirm && !specialCharConfirm) {
+    alert("Please enter atleast one character type for your password.");
+    lowerCaseConfirm = confirmLowerCase();
+    upperCaseConfirm = confirmUpperCase();
+    numberConfirm = confirmNumber();
+    specialCharConfirm = confirmSpecialCharacter();
+  }
   
   // checks if passwordLength is between 8 and 128
+  var passwordLength = prompt("Please enter how long you would like your password between 8 and 128 characters in length.");
   while (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
     passwordLength = prompt("You have entered an invalid number. Please enter a number from 8 to 128.");
     passwordLength = Number(passwordLength);
   }
-
-  // // checks if user has selected atleast one password character type
-  // if (confirmArray === [false, false, false, false]) {
-  //   alert("Please enter atleast one character type for your password.");
-  //   generatePassword();
-  // }
 
   // generate random character array with a possible one of each type of password character
   for (var i = 0; i < passwordLength; i++) {    
