@@ -1,6 +1,13 @@
 // Password Generator
 // Generates a random password given four options for characters and a password length
 
+// global variables
+const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz';
+const upperCaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const symbols = '!"#$%&()*+,-./:;<=>?@[\]^_`{|}~';
+
+
+
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
@@ -15,13 +22,11 @@ var passwordText = document.querySelector("#password");
 
 // function to generate random lower case character
 var getRandomLower = function() {
-  const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz';
   return lowerCaseLetters[Math.floor(Math.random() * lowerCaseLetters.length)];
 };
 
 // function to generate random upper case character
 var getRandomUpper = function() {
-  const upperCaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   return upperCaseLetters[Math.floor(Math.random() * upperCaseLetters.length)];
 };
 
@@ -32,7 +37,6 @@ var getRandomNumber = function() {
 
 // function to generate random special character
 var getRandomSymbol = function() {
-  const symbols = '~!@#$%^&*()_+{}":?><;.,';
   return symbols[Math.floor(Math.random() * symbols.length)];
 };
 
