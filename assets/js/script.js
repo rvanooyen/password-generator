@@ -6,8 +6,6 @@ const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz';
 const upperCaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const symbols = '!"#$%&()*+,-./:;<=>?@[\]^_`{|}~';
 
-
-
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
