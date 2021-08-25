@@ -6,6 +6,7 @@
 ** a password length between 8 to 128 characters
 
 Github page:
+git@github.com:rvanooyen/password-generator.git
 
 Deployed App Site:
 https://rvanooyen.github.io/password-generator/
